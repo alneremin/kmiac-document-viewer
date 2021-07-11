@@ -6,7 +6,7 @@ const { dataToJson } = require("../utils/helpers")
 const http = require('http'); // or 'https' for https:// URLs
 const fs = require('fs');
 
-exports.getDocuments = async (body) => {
+exports.getDocuments = async (query) => {
 
 
     // const file = fs.createWriteStream("wsdl.wsdl");
@@ -21,7 +21,7 @@ exports.getDocuments = async (body) => {
     var args = {
 
         HelloRequest: {
-            Name: "suka"
+            Name: query.name
         }
         // body: {
         //     amdId: "123"

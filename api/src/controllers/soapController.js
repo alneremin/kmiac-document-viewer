@@ -6,8 +6,8 @@ const router = express.Router()
 
 router.get("/", async (req, res, next) => {
     try {
-      console.log(req);
-      let result = await service.getDocuments(req.body)
+      console.log(req.query);
+      let result = await service.getDocuments(req.query)
       
       return res.status(result.status).send(result)
   

@@ -1,9 +1,16 @@
-export {}
+export { }
+
+export interface ISOAPData {
+  "HelloResponse": {
+    "Message": String
+  }
+}
 
 export interface ISOAPResponse {
-    "HelloResponse": {
-      "Message":String
-    }
+  getResponse: (value: any) => any,
+  state: String | undefined,
+  // onChange: (value: any) => void,
+  // search: boolean
 }
 
 export enum DialogResultCode {

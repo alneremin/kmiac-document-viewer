@@ -1,6 +1,6 @@
 
 import {ApiService} from "./ApiService";
-import {ISOAPResponse} from "../store/Interfaces";
+import {ISOAPData} from "../store/Interfaces";
 
 
 export const AppService = {
@@ -8,8 +8,8 @@ export const AppService = {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    async getDocument(): Promise<ISOAPResponse> {
-        let result = await ApiService.getDocument();
+    async getDocument(query: any): Promise<ISOAPData> {
+        let result = await ApiService.getDocument(query);
         return result;
     },
 }

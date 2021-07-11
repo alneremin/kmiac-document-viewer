@@ -13,8 +13,10 @@ const URL_SOAP = `${BASE_URL}/soap`;
 export const ApiService = {
     TAG: "ApiService",
 
-    async getDocument() {
-        return this.__get(URL_SOAP);
+    async getDocument(query: any) {
+        console.log(query);
+        
+        return this.__get(URL_SOAP, query);
     },
     //==================================================================================================================
 

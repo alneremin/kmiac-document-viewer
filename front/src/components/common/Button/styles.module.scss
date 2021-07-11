@@ -1,0 +1,11 @@
+@import "../../../colors.scss";
+@import "../../../mixins.scss";
+
+.button {
+    width: 100%;
+    border-radius: 5px;
+    color: $color-white;
+    height: 48px;
+    background-color: $color-green-light;
+    @include font(18px);
+}

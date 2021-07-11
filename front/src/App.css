@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  background-color: #282c34;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -14,14 +16,27 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* background-color: #282c34; */
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-search {
+  /* background-color: #282c34; */
+  min-height: 10vh;
+  min-width: 50vh;
+  flex-direction: row;
+  display: flex;
+  /* 
+  
+  align-items: left; */
+  /* justify-content: left; */
+  font-size: calc(10px + 2vmin);
 }
 
 .App-link {
