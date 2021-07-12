@@ -1,6 +1,6 @@
 
 import {ApiService} from "./ApiService";
-import {ISOAPData} from "../store/Interfaces";
+import {ISearchRegistryItem, IGetContentItem} from "../store/Interfaces";
 
 
 export const AppService = {
@@ -8,8 +8,13 @@ export const AppService = {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    async getDocument(query: any): Promise<ISOAPData> {
-        let result = await ApiService.getDocument(query);
+    async searchRegistryItem(query: any): Promise<ISearchRegistryItem> {
+        let result = await ApiService.searchRegistryItem(query);
+        return result;
+    },
+
+    async getContent(query: any): Promise<IGetContentItem> {
+        let result = await ApiService.searchRegistryItem(query);
         return result;
     },
 }

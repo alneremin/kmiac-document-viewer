@@ -6,6 +6,12 @@ export interface ISOAPData {
   }
 }
 
+export interface ISOAPData {
+  "HelloResponse": {
+    "Message": String
+  }
+}
+
 export interface ISOAPResponse {
   getResponse: (value: any) => any,
   state: String | undefined,

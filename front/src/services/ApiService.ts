@@ -6,18 +6,22 @@ export const objProp = (obj: any, prop: string) => obj[prop];
 
 const SERVER_URL_PARAM = constants.config.serverUrl;
 
-const BASE_URL = `${SERVER_URL_PARAM}/api`;
+const BASE_URL = `${SERVER_URL_PARAM}/api/soap`;
 
-const URL_SOAP = `${BASE_URL}/soap`;
+const URL_SEARCH = `${BASE_URL}/searchRegistryItem`;
+const URL_GET_DOCUMENT = `${BASE_URL}/getContent`;
 
 export const ApiService = {
     TAG: "ApiService",
 
-    async getDocument(query: any) {
-        console.log(query);
-        
-        return this.__get(URL_SOAP, query);
+    async searchRegistryItem(query: any) {
+        return this.__get(URL_SEARCH, query);
     },
+    
+    async getContent(query: any) {
+        return this.__get(URL_GET_DOCUMENT, query);
+    },
+
     //==================================================================================================================
 
     __config(data?: any) {
