@@ -67,8 +67,13 @@ function App() {
     Log.d4("APP", "ContentResponse", {
       type: value.type
     })
-    setFile(getFileURL(value.data.toString()))
-    setModal(true)
+    if (value.type === "pdf") {
+      setFile(getFileURL(value.data.toString()))
+      setModal(true)
+    } else {
+      setErrorMessage("Данный тип файла не поддерживается просмотрщиком PDF")
+    }
+    
   }
 
   function setErrorMessage(value: String) {
