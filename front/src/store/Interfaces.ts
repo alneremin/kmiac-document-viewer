@@ -1,20 +1,39 @@
 export { }
 
-export interface ISOAPData {
-  "HelloResponse": {
-    "Message": String
-  }
+export interface ISearchRegistryItemRequest {
+  surname: String,
+  name: String,
+  patrname: String,
+  birthdate: String
 }
 
-export interface ISOAPData {
-  "HelloResponse": {
-    "Message": String
-  }
+export interface IGetContentRequest {
+  amdId: String,
+}
+
+export interface ISearchRegistryItem {
+  amdId: String,
+  localUid: String,
+  registrationDate: String,
+}
+
+export interface IGetContentItem {
+  data: String,
+  type: String,
+}
+
+export interface ISearchRegistryItemData {
+  docs: ISearchRegistryItem[],
+  onClick: (element: any) => boolean
 }
 
 export interface ISOAPResponse {
-  getResponse: (value: any) => any,
-  state: String | undefined,
+  getSearchResponse: (value: ISearchRegistryItem[]) => any,
+  searchRequest: ISearchRegistryItemRequest | undefined,
+  getContentResponse: (value: IGetContentItem) => any,
+  contentRequest: IGetContentRequest | undefined,
+  setError: (message: String) => void,
+  clientId: String | undefined,
   // onChange: (value: any) => void,
   // search: boolean
 }
@@ -39,4 +58,19 @@ export interface IDialogResult {
 export interface IDialogResultProps {
   onResult: (result: IDialogResult) => void;
   onCancel: () => void;
+}
+
+export interface ITableColumn {
+  name: string;
+  propertyName: string;
+  width: number;
+  order: number;
+  type: string;
+  alignLeft?: boolean;
+}
+
+export interface ITableColumnHeader {
+  index: number;
+  name: string;
+  propertyName: string;
 }

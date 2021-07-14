@@ -1,0 +1,17 @@
+@import "../../../mixins.scss";
+@import "../../../colors.scss";
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $color-gray;
+    scrollbar-color: "rgba(0, 0, 0, 0)" "#2A9C6B";
+    scrollbar-width: thin;
+
+    &:focus {
+        border-color: $color-green;
+    }
+}

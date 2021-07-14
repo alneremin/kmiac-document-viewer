@@ -26,6 +26,27 @@
   color: white;
 }
 
+.app-token {
+  /* background-color: #282c34; */
+  max-width: 340px;
+  /* min-height: 10vh; */
+  margin-top: 2%;
+  margin-right: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.top {
+  z-index: 1;
+}
+
+.down {
+  z-index: 100;
+}
+
 .App-search {
   /* background-color: #282c34; */
   min-height: 10vh;

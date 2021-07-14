@@ -8,13 +8,13 @@ export const AppService = {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    async searchRegistryItem(query: any): Promise<ISearchRegistryItem> {
+    async searchRegistryItem(query: any): Promise<ISearchRegistryItem[]> {
         let result = await ApiService.searchRegistryItem(query);
         return result;
     },
 
     async getContent(query: any): Promise<IGetContentItem> {
-        let result = await ApiService.searchRegistryItem(query);
+        let result = await ApiService.getContent(query);
         return result;
     },
 }

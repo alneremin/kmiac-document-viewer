@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {Log} from "./log";
 
 // Creating a custom hook
 export function useInput(defaultValue: any) {
@@ -13,3 +14,8 @@ export function useInput(defaultValue: any) {
         onChange,
     };
 }
+
+export const useDebug = (tag: string, name: string, data: any) =>
+    useEffect(() => {
+        Log.d1(tag, `${name}: {}`, data);
+    });

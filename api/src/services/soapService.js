@@ -10,13 +10,15 @@ const convert = require('xml-js');
 exports.searchRegistryItem = async (query) => {
 
     let result = new Result()
-
-    let fullName = query.fullname ?? ""
+    
     let page = query.page ?? 0
-    let birthDate = query.birthdate
+
+    let surname = query.surname
+    let name = query.name
+    let patrname = query.patrname
+    let birthdate = query.birthdate
 
     page = Number(page)
-    let [surname, name, pathname] = fullName.split(" ")
 
     let body = builder.create('soap:Envelope', { encoding: 'utf-8' })
         .att('xmlns:ser', 'http://esb.kmiac.ru/amd/service/')
@@ -39,15 +41,24 @@ exports.searchRegistryItem = async (query) => {
         .ele('ser:searchRegistryItemRequest')
         .ele('ser:source', 'amd').up()
     // .end({pretty: true})
-    const withName = name ? body.ele('ser:name', name ?? "1 ").up() : body
-    const withBirthDate = birthDate ? body.ele('ser:birthDate', birthDate).up() : body
+    const withSurname = surname ? body.ele('ser:surname', surname).up() : body
+    const withName = name ? withSurname.ele('ser:name', name).up() : withSurname
+    const withPatrname = patrname ? withName.ele('ser:patrName', patrname).up() : withName
+
+    const withBirthDate = birthdate ? withPatrname.ele('ser:birthDate', birthdate).up() : withPatrname
     const xml = withBirthDate.ele('ser:page', page - 1).up()
         .end({ pretty: true })
 
     const url = 'http://esb.kmiac.ru/amd/service/?wsdl'
     const headers = { headers: { 'Content-Type': 'text/xml' } }
 
-    let { data } = await axios.post(url, xml, headers)
+    try {
+        var { data } = await axios.post(url, xml, headers)
+    }
+    catch(ex) {
+        return result.setErrorAndStatus(500, ex.message)
+    }
+    
 
     let xmlData = convert.xml2js(data, { compact: true, spaces: 2 });
 
@@ -110,7 +121,13 @@ exports.getContent = async (query) => {
     const url = 'http://esb.kmiac.ru/amd/service/?wsdl'
     const headers = { headers: { 'Content-Type': 'text/xml' } }
 
-    let { data } = await axios.post(url, xml, headers)
+
+    try {
+        var { data } = await axios.post(url, xml, headers)
+    }
+    catch(ex) {
+        return result.setErrorAndStatus(500, ex.message)
+    }
 
     let xmlData = convert.xml2js(data, { compact: true, spaces: 2 });
 
@@ -130,7 +147,7 @@ exports.getContent = async (query) => {
     //     console.log(err);
     // });
     
-    result.setResult({"data": fileData})
+    result.setResult({data: fileData, type: fileData[0] == 'J' ? 'pdf' : 'xml'})
 
     return result
 
